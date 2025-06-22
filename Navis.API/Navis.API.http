@@ -1,0 +1,6 @@
+@Navis.API_HostAddress = http://localhost:5056
+
+GET {{Navis.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

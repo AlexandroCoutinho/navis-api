@@ -1,4 +1,4 @@
-﻿namespace Navis.Application.Models
+﻿namespace Navis.Application.Models.Brand
 {
     public class BrandReadModel
     {

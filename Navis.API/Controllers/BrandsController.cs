@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Navis.Application.Models.Brand;
 using Navis.Application.Services.Interfaces;
 
 namespace Navis.API.Controllers
@@ -14,38 +15,18 @@ namespace Navis.API.Controllers
             _brandApplicationService = brandApplicationService;
         }
 
-
-        //[HttpGet]
-        //public async Task<IActionResult> Get()
-        //{
-        //    var result = await _brandApplicationService.CreateAsync();
-        //    return Ok("TESTE");
-        //}
-
-        //// GET api/<BrandsController>/5
-        //[HttpGet("{id}")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
-
-        [HttpPost]
-        public async Task<IActionResult> Post()
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(string id)
         {
-            var result = await _brandApplicationService.CreateAsync(new Application.Models.BrandCreateModel());
-            return Created(); //Return URI
+            await Task.FromResult(0);
+            return Ok(id);
         }
 
-        //// PUT api/<BrandsController>/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
-
-        //// DELETE api/<BrandsController>/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] BrandCreateModel brandCreateModel)
+        {
+            var brandReadModel = await _brandApplicationService.CreateAsync(brandCreateModel);
+            return CreatedAtAction(nameof(Get), new { id = brandReadModel.Id }, brandReadModel);
+        }
     }
 }

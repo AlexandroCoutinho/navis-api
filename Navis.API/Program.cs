@@ -1,17 +1,15 @@
+using Navis.Application.DependencyInjection;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddEndpointsApiExplorer(); // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddSwaggerGen();
 
-//Custom Services
-//Application
-builder.Services.AddTransient<IBuilder>
-//Custom Services
-//
+DependencyInjection.Configure(builder.Services);
 
 var app = builder.Build();
 

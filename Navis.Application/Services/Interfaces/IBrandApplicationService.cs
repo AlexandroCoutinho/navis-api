@@ -1,4 +1,4 @@
-﻿using Navis.Application.Models;
+﻿using Navis.Application.Models.Brand;
 
 namespace Navis.Application.Services.Interfaces
 {

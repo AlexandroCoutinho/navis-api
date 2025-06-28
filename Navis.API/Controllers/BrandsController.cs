@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Navis.Application.ApplicationServices.Interfaces;
 using Navis.Application.Models.Brand;
-using Navis.Application.Services.Interfaces;
+using Navis.Application.Models.Filters;
 
 namespace Navis.API.Controllers
 {
@@ -18,8 +19,15 @@ namespace Navis.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(string id)
         {
-            await Task.FromResult(0);
-            return Ok(id);
+            var brandReadModel = await _brandApplicationService.ReadByIdAsync(id);
+            return Ok(brandReadModel);
+        }
+
+        [HttpGet()]
+        public async Task<IActionResult> Get([FromQuery] BrandFilterModel brandFilterModel)
+        {
+            var pagedResultModel = await _brandApplicationService.ReadPagedResultAsync(brandFilterModel);
+            return Ok(pagedResultModel);
         }
 
         [HttpPost]

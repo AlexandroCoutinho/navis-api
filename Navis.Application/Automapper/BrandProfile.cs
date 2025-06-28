@@ -10,7 +10,7 @@ namespace Navis.Application.Automapper
         {
             CreateMap<BrandCreateModel, Brand>()
                 .ForMember(dest => dest.Id, (src) => { src.Ignore(); })
-                .ForMember(dest => dest.Name, (x) => { x.MapFrom(src => src.Name); });
+                .ForMember(dest => dest.Name, (src) => { src.MapFrom(src => src.Name); });
 
             CreateMap<Brand, BrandReadModel>()
                 .ForMember(dest => dest.Id, (x) => { x.MapFrom(src => src.Id); })

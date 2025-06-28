@@ -1,3 +1,5 @@
+using Navis.Application;
+using Navis.Application.Automapper;
 using Navis.Application.DependencyInjection;
 
 
@@ -9,7 +11,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer(); // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddSwaggerGen();
 
+//-------------
 DependencyInjection.Configure(builder.Services);
+AutoMapperConfiguration.Configure(builder.Services);
+Mappings.RegisterAll();
+//-------------
 
 var app = builder.Build();
 

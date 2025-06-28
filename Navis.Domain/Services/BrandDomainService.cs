@@ -1,5 +1,7 @@
 ﻿using Navis.Domain.Entities;
-using Navis.Domain.Repository;
+using Navis.Domain.Repository.Filters;
+using Navis.Domain.Repository.Interfaces;
+using Navis.Domain.Repository.PagedResult;
 using Navis.Domain.Services.Interfaces;
 
 namespace Navis.Domain.Services
@@ -17,6 +19,18 @@ namespace Navis.Domain.Services
         {
             var createdBrand = await _brandRepository.CreateAsync(brand);
             return createdBrand;
+        }
+
+        public async Task<Brand> ReadByIdAsync(string id)
+        {
+            var brand = await _brandRepository.ReadByIdAsync(id);
+            return brand;
+        }
+
+        public async Task<PagedResult<Brand>> ReadPagedResultAsync(BrandFilter brandFilter)
+        {
+            var pagedResult = await _brandRepository.ReadPagedResultAsync(brandFilter);
+            return pagedResult;
         }
     }
 }

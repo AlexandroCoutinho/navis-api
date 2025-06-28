@@ -4,9 +4,9 @@ namespace Navis.Domain.Entities
 {
     public class Variation : IEntity
     {
-        public string Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public string Id { get; set; } = "";
+        public string Name { get; set; } = "";
+        public string Description { get; set; } = "";
         public bool LimitedEdition { get; set; } = false;
 
         public decimal Weight { get; set; }

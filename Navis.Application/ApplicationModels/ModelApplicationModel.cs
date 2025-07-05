@@ -1,6 +1,6 @@
-﻿namespace Navis.Application.Models.Brand
+﻿namespace Navis.Application.ApplicationModels
 {
-    public class BrandReadModel
+    public class ModelApplicationModel
     {
         public string Id { get; set; } = "";
         public string Name { get; set; } = "";

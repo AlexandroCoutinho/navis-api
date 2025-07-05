@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Navis.Application.ApplicationModels.Brand;
+using Navis.Application.ApplicationModels.Filters;
 using Navis.Application.ApplicationServices.Interfaces;
-using Navis.Application.Models.Brand;
-using Navis.Application.Models.Filters;
 
 namespace Navis.API.Controllers
 {
@@ -14,6 +14,13 @@ namespace Navis.API.Controllers
         public BrandsController(IBrandApplicationService brandApplicationService)
         {
             _brandApplicationService = brandApplicationService;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] BrandApplicationModel brandApplicationModel)
+        {
+            var createdBrand = await _brandApplicationService.CreateAsync(brandApplicationModel);
+            return CreatedAtAction(nameof(Get), new { id = createdBrand.Id }, createdBrand);
         }
 
         [HttpGet("{id}")]
@@ -30,11 +37,11 @@ namespace Navis.API.Controllers
             return Ok(pagedResultModel);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Post([FromBody] BrandCreateModel brandCreateModel)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(string id, [FromBody] BrandApplicationModel brandApplicationModel)
         {
-            var brandReadModel = await _brandApplicationService.CreateAsync(brandCreateModel);
-            return CreatedAtAction(nameof(Get), new { id = brandReadModel.Id }, brandReadModel);
+            var updatedBrand = await _brandApplicationService.UpdateAsync(brandApplicationModel);
+            return NoContent();
         }
     }
 }

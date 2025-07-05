@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Navis.Application.Models.Brand;
+using Navis.Application.ApplicationModels.Brand;
 using Navis.Domain.Entities;
 
 namespace Navis.Application.Automapper
@@ -8,13 +8,10 @@ namespace Navis.Application.Automapper
     {
         public BrandProfile()
         {
-            CreateMap<BrandCreateModel, Brand>()
-                .ForMember(dest => dest.Id, (src) => { src.Ignore(); })
-                .ForMember(dest => dest.Name, (src) => { src.MapFrom(src => src.Name); });
-
-            CreateMap<Brand, BrandReadModel>()
+            CreateMap<Brand, BrandApplicationModel>()
                 .ForMember(dest => dest.Id, (x) => { x.MapFrom(src => src.Id); })
-                .ForMember(dest => dest.Name, (x) => { x.MapFrom(src => src.Name); });
+                .ForMember(dest => dest.Name, (x) => { x.MapFrom(src => src.Name); })
+                ;
         }
     }
 }

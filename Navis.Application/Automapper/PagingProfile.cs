@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Navis.Application.Models.Filters;
+using Navis.Application.ApplicationModels.Filters;
 using Navis.Domain.Repository.Filters;
 
 namespace Navis.Application.Automapper

@@ -24,15 +24,6 @@ namespace Navis.Repository
         {
             await _mongoCollection.InsertOneAsync(brand);
             var createdBrand = await ReadByIdAsync(brand.Id);
-
-            if (brand == createdBrand)
-            {
-                var message = "referencias iguais";
-            }
-            else
-            {
-                var message = "referencias diferentes";
-            }
             return createdBrand;
         }
 
@@ -50,11 +41,10 @@ namespace Navis.Repository
             pagedResultBrand.PageNumber = brandFilter.Paging.PageNumber;
 
             FilterDefinition<Brand> filterDefinition = GetFilterDefinition(brandFilter);
-            SortDefinition<Brand> sorDefinition = GetSortDefinition<Brand>(brandFilter.Sorting);
+            SortDefinition<Brand>? sorDefinition = GetSortDefinition<Brand>(brandFilter.Sorting);
 
             long totalItems = await _mongoCollection.CountDocumentsAsync(filterDefinition);
             pagedResultBrand.TotalItems = totalItems;
-
 
             var brands = await _mongoCollection
                 .Find(filterDefinition)
@@ -67,6 +57,30 @@ namespace Navis.Repository
 
             return pagedResultBrand;
         }
+
+        public async Task<bool> UpdateAsync(Brand brand)
+        {
+            var filter = Builders<Brand>.Filter.Eq(x => x.Id, brand.Id);
+            var result = await _mongoCollection.ReplaceOneAsync(filter, brand);
+            return result.ModifiedCount > 0;
+        }
+
+        public async Task<bool> DeleteAsync(string id, bool soft = true)
+        {
+            var result = false;
+
+            if (soft)
+            {
+                result = await SoftDeleteAsync(id);
+            }
+            else
+            {
+                result = await DeleteAsync(id);
+            }
+
+            return result;
+        }
+
 
 
         private FilterDefinition<Brand> GetFilterDefinition(BrandFilter brandFilter)
@@ -87,9 +101,9 @@ namespace Navis.Repository
             return filterDefinition;
         }
 
-        public SortDefinition<T> GetSortDefinition<T>(Sorting sorting)
+        public SortDefinition<T>? GetSortDefinition<T>(Sorting sorting)
         {
-            SortDefinition<T> sortDefinition = null;
+            SortDefinition<T>? sortDefinition = null;
 
             if (sorting != null && !string.IsNullOrWhiteSpace(sorting.SortBy))
             {
@@ -116,5 +130,21 @@ namespace Navis.Repository
 
             return sortDefinition;
         }
+        private async Task<bool> SoftDeleteAsync(string id)
+        {
+            var filter = Builders<Brand>.Filter.Eq(x => x.Id, id);
+            var update = Builders<Brand>.Update.Set(x => x.IsDeleted, true);
+            var result = await _mongoCollection.UpdateOneAsync(filter, update);
+            return result.ModifiedCount > 0;
+        }
+
+        private async Task<bool> DeleteAsync(string id)
+        {
+            var filter = Builders<Brand>.Filter.Eq(x => x.Id, id);
+            var result = await _mongoCollection.DeleteOneAsync(filter);
+            return result.DeletedCount > 0;
+        }
+
+
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Navis.Domain.Repository.Filters;
 
-namespace Navis.Application.Models.Filters
+namespace Navis.Application.ApplicationModels.Filters
 {
     public abstract class BaseFilterModel
     {

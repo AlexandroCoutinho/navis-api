@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Navis.Application.Models.PagedResult;
+using Navis.Application.ApplicationModels.PagedResult;
 using Navis.Domain.Repository.PagedResult;
 
 namespace Navis.Application.Automapper

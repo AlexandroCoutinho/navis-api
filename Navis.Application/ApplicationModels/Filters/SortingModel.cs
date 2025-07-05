@@ -1,4 +1,4 @@
-﻿namespace Navis.Application.Models.Filters
+﻿namespace Navis.Application.ApplicationModels.Filters
 {
     public class SortingModel
     {

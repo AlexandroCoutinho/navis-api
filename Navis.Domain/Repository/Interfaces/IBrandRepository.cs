@@ -4,9 +4,11 @@ using Navis.Domain.Repository.Filters;
 namespace Navis.Domain.Repository.Interfaces
 {
     public interface IBrandRepository :
-        ICreateRepository<Brand>,
-        IReadByIdRepository<Brand>,
-        IReadPagedResult<Brand, BrandFilter>
+        ICreateAsyncRepository<Brand>,
+        IReadByIdAsyncRepository<Brand>,
+        IReadPagedResultAsyncRepository<Brand, BrandFilter>,
+        IDeleteAsyncRepository,
+        IUpdateAsyncRepository<Brand>
     {
     }
 }

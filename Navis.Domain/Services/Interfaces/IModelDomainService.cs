@@ -3,7 +3,7 @@ using Navis.Domain.Repository.Filters;
 
 namespace Navis.Domain.Services.Interfaces
 {
-    public interface IBrandDomainService : IDomainService<Brand, BrandFilter>
+    public interface IModelDomainService : IDomainService<Model, ModelFilter>
     {
     }
 }

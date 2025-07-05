@@ -1,4 +1,4 @@
-﻿namespace Navis.Application.Models.PagedResult
+﻿namespace Navis.Application.ApplicationModels.PagedResult
 {
     public class PagedResultModel<T>
     {

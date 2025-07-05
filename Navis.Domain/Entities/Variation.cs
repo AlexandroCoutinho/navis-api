@@ -6,6 +6,8 @@ namespace Navis.Domain.Entities
     {
         public string Id { get; set; } = "";
         public string Name { get; set; } = "";
+        public bool IsDeleted { get; set; } = false;
+
         public string Description { get; set; } = "";
         public bool LimitedEdition { get; set; } = false;
 

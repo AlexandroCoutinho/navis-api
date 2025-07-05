@@ -20,6 +20,8 @@ namespace Navis.Repository.Mappings
                     .SetSerializer(new StringSerializer(BsonType.ObjectId));
 
                     bsonClassMap.MapMember(x => x.Name).SetIsRequired(true);
+
+                    bsonClassMap.MapMember(x => x.IsDeleted).SetIsRequired(true).SetDefaultValue(false);
                 });
             }
         }

@@ -20,16 +20,19 @@ namespace Navis.Application.DependencyInjection
         private static void ConfigureApplication(IServiceCollection serviceCollection)
         {
             serviceCollection.AddTransient<IBrandApplicationService, BrandApplicationService>();
+            serviceCollection.AddTransient<IModelApplicationService, ModelApplicationService>();
         }
 
         private static void ConfigureDomain(IServiceCollection serviceCollection)
         {
             serviceCollection.AddTransient<IBrandDomainService, BrandDomainService>();
+            serviceCollection.AddTransient<IModelDomainService, ModelDomainService>();
         }
 
         private static void ConfigureRepository(IServiceCollection serviceCollection)
         {
             serviceCollection.AddTransient<IBrandRepository, BrandRepository>();
+            serviceCollection.AddTransient<IModelRepository, ModelRepository>();
         }
     }
 }

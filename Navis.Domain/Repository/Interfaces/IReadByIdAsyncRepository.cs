@@ -2,7 +2,7 @@
 
 namespace Navis.Domain.Repository.Interfaces
 {
-    public interface IReadByIdRepository<T> where T : IEntity
+    public interface IReadByIdAsyncRepository<T> where T : IEntity
     {
         Task<T> ReadByIdAsync(string id);
     }

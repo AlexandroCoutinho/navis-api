@@ -4,16 +4,16 @@ using Navis.Domain.Repository.Filters;
 
 namespace Navis.Application.Automapper
 {
-    public class BrandFilterProfile : Profile
+    public class ModelFilterProfile : Profile
     {
-        public BrandFilterProfile()
+        public ModelFilterProfile()
         {
-            CreateMap<BrandFilterModel, BrandFilter>()
+            CreateMap<ModelFilterModel, ModelFilter>()
                 .ForMember(dest => dest.Name, (src) => { src.MapFrom(src => src.Name); })
                 .IncludeBase<BaseFilterModel, BaseFilter>()
                 ;
 
-            CreateMap<BrandFilter, BrandFilterModel>()
+            CreateMap<ModelFilter, ModelFilterModel>()
                 .ForMember(dest => dest.Name, (src) => { src.MapFrom(src => src.Name); })
                 .IncludeBase<BaseFilter, BaseFilterModel>()
                 ;
